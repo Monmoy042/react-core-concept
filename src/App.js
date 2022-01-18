@@ -24,6 +24,13 @@ const btn = {
   borderRadius: "5px",
   cursor: "pointer",
 };
+var productStyle = {
+  backgroundColor: "cyan",
+  color: "#000",
+  border: "2px solid green",
+  marginBottom: "5px",
+  borderRadius: "5px",
+};
 
 // App Component
 function App() {
@@ -36,13 +43,15 @@ function App() {
     name: "Novak Djokovic",
     job: "Tennis Player",
   };
-  var productStyle = {
-    backgroundColor: "cyan",
-    color: "#000",
-    border: "2px solid green",
-    marginBottom: "5px",
-    borderRadius: "5px",
-  };
+
+  // Skills array
+  // const skills = ["HTML", "CSS", "JavaScript", "ReactJS"];
+  // skills.map((element) => {
+  //   // console.log(element);
+  //   const skillName = element;
+  //   console.log(skillName);
+  //   return skillName;
+  // });
 
   // Product Object
   const products = [
@@ -50,6 +59,8 @@ function App() {
     { title: "Laptop", price: "55000 BDT" },
     { title: "TV", price: "45000 BDT" },
   ];
+  let productsName = products.map((product) => product.title);
+  console.log(productsName);
 
   // player data
   const sportsman = ["Rafael Nadal", "Tiger Woods"];
@@ -78,9 +89,19 @@ function App() {
         <Person name={sportsman[0]} job="Tennis Player" />
       </section>
       <section style={productStyle}>
-        <Product name={products[0].title} price={products[0].price} />
+        {/* Individual Product Get from the Product Array */}
+        {/* <Product name={products[0].title} price={products[0].price} />
         <Product name={products[1].title} price={products[1].price} />
-        <Product name={products[2].title} price={products[2].price} />
+        <Product name={products[2].title} price={products[2].price} /> */}
+
+        {/* Here we use map function to eliminate all the repetitive code */}
+        {products.map((product) => {
+          return <Product product={product} />;
+        })}
+      </section>
+
+      <section>
+        <Skills />
       </section>
     </div>
   );
@@ -101,16 +122,33 @@ function Person(props) {
 
 // Product info
 function Product(props) {
-  const { name, price } = props;
+  // const { name, price } = props;
+  const { title, price } = props.product;
   console.log(props);
   return (
     <>
       <div>
-        <h1>Title: {name}</h1>
+        <h1>Title: {title}</h1>
         <h3>Price: {price}</h3>
         <button style={btn}>Buy Now</button>
       </div>
     </>
   );
 }
+
+// New Component (skills)
+function Skills() {
+  const skills = ["HTML", "CSS", "JavaScript", "ReactJS"];
+  return (
+    <div>
+      <h2>Skills List</h2>
+      <ul style={{ listStyle: "none" }}>
+        {skills.map((skillName, item) => {
+          return <li key={item}>{skillName}</li>;
+        })}
+      </ul>
+    </div>
+  );
+}
+
 export default App;
