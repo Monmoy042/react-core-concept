@@ -24,6 +24,9 @@ function App() {
     name: "Novak Djokovic",
     job: "Tennis Player",
   };
+
+  // player data
+  const sportsman = ['Rafael Nadal','Tiger Woods'];
   return (
     <div className="App">
       <header className="App-header">
@@ -45,6 +48,8 @@ function App() {
       <section style={style}>
         <Person name="Mashrafee Mortaza" job="Cricketer" />
         <Person name="Tamim Iqbal" job="Cricketer" />
+        <Person name="Leo Messi" job="Footballer" />
+        <Person name={sportsman[0]} job="Tennis Player" />
       </section>
     </div>
   );
@@ -52,6 +57,7 @@ function App() {
 
 // Create Component
 function Person(props) {
+  console.log(props);
   return (
     <>
       <div style={{ border: "2px solid gold", marginBottom: "5px" }}>
