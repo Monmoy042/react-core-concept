@@ -1,6 +1,19 @@
 import logo from "./logo.svg";
 import "./App.css";
 
+// Styles
+const headingStyle = {
+  color: "salmon",
+  textAlign: "center",
+};
+const textStyle = {
+  color: "tomato",
+};
+const style = {
+  backgroundColor: "#282C34",
+  color: "#fff",
+};
+
 function App() {
   var name = "Roger Federer";
   var player = {
@@ -10,13 +23,6 @@ function App() {
   var player2 = {
     name: "Novak Djokovic",
     job: "Tennis Player",
-  };
-  const headingStyle = {
-    color: "salmon",
-    textAlign: "center",
-  };
-  const textStyle = {
-    color: "tomato",
   };
   return (
     <div className="App">
@@ -36,8 +42,23 @@ function App() {
         <h1 style={headingStyle}>Player Name: {player2.name}</h1>
         <p style={textStyle}>Player's Job: {player2.job}</p>
       </section>
+      <section style={style}>
+        <Person name="Mashrafee Mortaza" job="Cricketer" />
+        <Person name="Tamim Iqbal" job="Cricketer" />
+      </section>
     </div>
   );
 }
 
+// Create Component
+function Person(props) {
+  return (
+    <>
+      <div style={{ border: "2px solid gold", marginBottom: "5px" }}>
+        <h1>Name: {props.name}</h1>
+        <p>Job: {props.job}</p>
+      </div>
+    </>
+  );
+}
 export default App;
