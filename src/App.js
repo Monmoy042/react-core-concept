@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -109,6 +109,11 @@ function App() {
         {/* Here we will practice  on state in reactJS*/}
         <Counter />
       </section>
+
+      {/* Dynamic Users */}
+      <section>
+        <Users />
+      </section>
     </div>
   );
 }
@@ -172,6 +177,29 @@ function Counter() {
       <h1>Count: {count}</h1>
       <button onClick={handleIncrease}>Increase</button>
       <button onClick={handleDecrease}>Decrease</button>
+    </div>
+  );
+}
+
+// Data Load from API to a component
+function Users() {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    // console.log("Calling Effect");
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
+
+  return (
+    <div>
+      <h3>Dynamic Users: {users.length}</h3>
+      {/* {console.log(users)} */}
+      <ul>
+        {users.map((user) => (
+          <li>{user.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
