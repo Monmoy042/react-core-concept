@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -103,6 +104,11 @@ function App() {
       <section>
         <Skills />
       </section>
+
+      <section>
+        {/* Here we will practice  on state in reactJS*/}
+        <Counter />
+      </section>
     </div>
   );
 }
@@ -123,8 +129,9 @@ function Person(props) {
 // Product info
 function Product(props) {
   // const { name, price } = props;
+  // console.log(props);
   const { title, price } = props.product;
-  console.log(props);
+
   return (
     <>
       <div>
@@ -147,6 +154,24 @@ function Skills() {
           return <li key={item}>{skillName}</li>;
         })}
       </ul>
+    </div>
+  );
+}
+
+//Counter component
+function Counter() {
+  const [count, setCount] = useState(0);
+  const handleIncrease = () => {
+    // console.log("Clicked");
+    const newCount = count + 1;
+    setCount(newCount);
+  };
+  const handleDecrease = () => setCount(count - 1);
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={handleIncrease}>Increase</button>
+      <button onClick={handleDecrease}>Decrease</button>
     </div>
   );
 }
